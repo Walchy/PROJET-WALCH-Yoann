@@ -1,0 +1,28 @@
+<div *ngIf="user$ | async as u">
+    {{u.nom}}
+    {{u.prenom}}
+
+    <button (click)="Deconnexion()">Deconnexion</button>
+
+</div>
+
+<div *ngIf="user$ == null">
+
+    <form [formGroup]="userForm" >
+    <label>
+        Login :
+        <input type="text" formControlName="login" id="login" >
+    </label>
+
+    <label>
+        Password :
+        <input type="text" formControlName="password" id="password" >
+    </label>
+
+    <button (click)="Connexion()"[disabled]="!userForm.valid">Connexion</button>
+
+    </form>
+    
+</div>
+
+
