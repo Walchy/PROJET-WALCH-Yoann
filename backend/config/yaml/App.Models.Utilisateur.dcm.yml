@@ -1,0 +1,64 @@
+App\Models\Utilisateur:
+    type: entity
+    table: UTILISATEUR
+    id:
+        idUtilisateur:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: idUtilisateur
+            generator:
+                strategy: IDENTITY
+    fields:
+        nom:
+            type: string
+            nullable: false
+            length: 256
+            options:
+                fixed: false
+        prenom:
+            type: string
+            nullable: false
+            length: 256
+            options:
+                fixed: false
+        civilite:
+            type: string
+            nullable: false
+            length: 256
+            options:
+                fixed: false
+        adresse:
+            type: string
+            nullable: false
+            length: 256
+            options:
+                fixed: false
+        telephone:
+            type: string
+            nullable: false
+            length: 256
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 256
+            options:
+                fixed: false
+        login:
+            type: string
+            nullable: false
+            length: 256
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 256
+            options:
+                fixed: false
+
+    lifecycleCallbacks: {}

@@ -1,0 +1,25 @@
+{
+    "name": "ywalch/tp06-walch-yoann",
+    "authors": [
+        {
+            "name": "Walchy",
+            "email": "ywalch@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "4.*",
+        "php-di/php-di": "^6.3",
+        "slim/psr7": "^1.2",
+        "tuupola/slim-jwt-auth": "^3.5",
+        "vlucas/phpdotenv": "^5.2",
+        "doctrine/orm" : "2.*",
+        "symfony/yaml" :  "*",
+        "firebase/php-jwt": "^5.2"
+    },
+    "autoload": {
+        "classmap": ["App\\Models"],
+        "psr-4": {
+            "App\\" : "app/"
+        }
+    }
+}
