@@ -12,27 +12,27 @@ import {Router} from '@angular/router';
 })
 export class TetiereComponent implements OnInit {
   listeProduits$: Observable<Produit>;
-  nbProduits$: Observable<number>
+  nbProduits$: Observable<number>;
 
-  constructor(public router:Router, private store: Store) { }
+  constructor(public router: Router, private store: Store) { }
 
   ngOnInit(): void {
     this.listeProduits$ = this.store.select(state => state.listeProduits$);
     // Solution 1
     this.nbProduits$ = this.store.select(ProduitState.getNbProduitsDansPanier);
     // Solution 2 si on a pas fait de fonction getNbProduitsDansPaniergetNbProduitsDansPanier
-    //this.nbProduits$ = this.store.select(state => state.panier.length);
+    // this.nbProduits$ = this.store.select(state => state.panier.length);
   }
 
   onClickPanier(): void {
-    this.router.navigate(['/boutique/panier'], {queryParams: this.listeProduits$})
+    this.router.navigate(['/boutique/panier'], {queryParams: this.listeProduits$});
   }
 
   onClickAccueil(): void {
-    this.router.navigate(['/accueil'], {queryParams: this.listeProduits$})
+    this.router.navigate(['/accueil'], {queryParams: this.listeProduits$});
   }
 
   onClickCatalogue(): void {
-    this.router.navigate(['/boutique/catalogue'], {queryParams: this.listeProduits$})
+    this.router.navigate(['/boutique/catalogue'], {queryParams: this.listeProduits$});
   }
 }

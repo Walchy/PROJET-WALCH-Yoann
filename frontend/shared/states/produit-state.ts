@@ -1,10 +1,10 @@
 import {NgxsModule, Action, Selector, State, StateContext} from '@ngxs/store';
-import {Panier} from './panier-state-model';
-import {AjouterProduit, SupprimerProduit} from '../actions/produit-actions';
+import {PanierStateModel} from './panier-state-model';
+import {AjouterProduit, SupprimerProduit, ViderPanier} from '../actions/produit-actions';
 import {Observable} from 'rxjs';
 import {Produit} from '../models/Produit';
 
-@State<Panier>({
+@State<PanierStateModel>({
   name: 'panier',
   defaults: {
     panier: []
@@ -12,18 +12,18 @@ import {Produit} from '../models/Produit';
 })
 export class ProduitState {
   @Selector()
-  static getNbProduitsDansPanier(state: Panier): number {
+  static getNbProduitsDansPanier(state: PanierStateModel): number {
     return state.panier.length;
   }
 
   @Selector()
-  static getContenuPanier(state: Panier): Produit[] {
+  static getContenuPanier(state: PanierStateModel): Produit[] {
     return state.panier;
   }
 
   @Action(AjouterProduit)
   add(
-    {getState, patchState}: StateContext<Panier>,
+    {getState, patchState}: StateContext<PanierStateModel>,
     {produitEnParamDeAjouterProduit}: AjouterProduit
   ) {
     const state = getState();
@@ -36,14 +36,14 @@ export class ProduitState {
 
   @Action(SupprimerProduit)
   del(
-    {getState, patchState}: StateContext<Panier>,
+    {getState, patchState}: StateContext<PanierStateModel>,
     {produitEnParamDeSupprimerProduit}: SupprimerProduit
   ) {
     const state = getState();
-    let panierAJour: Panier;
-    panierAJour = new Panier();
+    let panierAJour: PanierStateModel;
+    panierAJour = new PanierStateModel();
     panierAJour.panier = state.panier;
-    for (let produit of panierAJour.panier) {
+    for (const produit of panierAJour.panier) {
       if (produitEnParamDeSupprimerProduit.nom === produit.nom) {
         panierAJour.panier.splice(state.panier.indexOf(produit), 1);
         break;
@@ -54,4 +54,16 @@ export class ProduitState {
       panier: state.panier = panierAJour.panier
     });
   }
+
+
+  @Action(ViderPanier)
+    deleteAll(
+      {patchState}: StateContext<PanierStateModel>
+    )
+    {
+      patchState({
+        panier: []
+      });
+    }
 }
+

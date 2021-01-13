@@ -1,5 +1,5 @@
 import {Produit} from '../models/Produit';
 
-export class Panier {
+export class PanierStateModel {
   panier: Produit[];
 }
